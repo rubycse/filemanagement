@@ -1,0 +1,14 @@
+.*
+!.gitignore
+,*
++*
+*.ipr
+*.iws
+*.iml
+bundles
+domain-lib
+stacktrace.log
+target/*
+plugins/*
+out
+pom.xml.*
