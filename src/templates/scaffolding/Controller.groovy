@@ -1,4 +1,11 @@
-<%=packageName ? "package ${packageName}\n\n" : ''%>class ${className}Controller {
+<%=packageName ? "package ${packageName}\n" : ''%>
+
+import com.rubikslab.digitalfiling.Utils
+
+/**
+ * @author: ${System.env['USER']}
+ */
+class ${className}Controller {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -7,7 +14,7 @@
     }
 
     def list = {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        params.max = Math.min(params.max ? params.int('max') : Utils.defaultListSize, 100)
         [${propertyName}List: ${className}.list(params), ${propertyName}Total: ${className}.count()]
     }
 
@@ -46,7 +53,7 @@
             redirect(action: "list")
         }
         else {
-            return [${propertyName}: ${propertyName}]
+            [${propertyName}: ${propertyName}]
         }
     }
 
