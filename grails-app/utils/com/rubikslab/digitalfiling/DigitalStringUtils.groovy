@@ -12,4 +12,8 @@ class DigitalStringUtils {
         String display = org.apache.commons.lang.StringUtils.left(text, MAX_CHAR_TO_DISPLAY)
         org.apache.commons.lang.StringUtils.substringBeforeLast(display, " ") + " ..."
     }
+
+    public static boolean isEmpty(String text) {
+        return (text?.trim() == null || text?.trim()?.empty)
+    }
 }

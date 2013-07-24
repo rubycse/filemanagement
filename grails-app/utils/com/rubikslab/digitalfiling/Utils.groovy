@@ -15,11 +15,13 @@ class Utils {
             throw new NumberFormatException("Invalid English Number: " + engNumber)
         }
 
-        String bengaliNumber = String.copyValueOf(engNumber.toCharArray())
+        StringBuilder bengaliNumber = new StringBuilder()
 
-        engToBengaliDigit.each {
-            bengaliNumber.replace(it.key, it.value)
+        engNumber.getChars().each { it ->
+            bengaliNumber.append(engToBengaliDigit[it.toString()])
         }
+
+        bengaliNumber
     }
 
     public static String bengaliToEngNumber(String bengaliNumber) {
@@ -32,5 +34,7 @@ class Utils {
         engToBengaliDigit.each {
             engNumber.replace(it.value, it.key)
         }
+
+        engNumber
     }
 }

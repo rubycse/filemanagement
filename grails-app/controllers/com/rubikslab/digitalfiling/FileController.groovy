@@ -7,28 +7,28 @@ class FileController {
     def index = { redirect(action: "list") }
 
     def search = {
+        def fileInstance = new File()
+        [fileInstance: fileInstance]
     }
 
-    def result = {
-        def subject
-        def code
+    def display = {
+        def fileInstance = new File(params)
 
-        if (params.digitalReference?.trim()?.length() == 25 && params.digitalReference?.startWith("৪৬.২০৩.০০০০.০০১.")) {
-            def subCode = params.digitalReference.subString(16, 17)
-            subject = Subject.findByCode(subCode)
-            code = params.digitalReference.subString(19, 20)
-        } else {
-            flash.message = "Invalid Digital Reference"
-            render(view: "search", model: [params: params])
+        boolean isEmptySearch = [fileInstance.name, fileInstance.digitalReference, fileInstance.year].every {
+            DigitalStringUtils.isEmpty it
+        }
+
+        if (isEmptySearch) {
+            fileInstance.errors.reject("Please Select Digital Reference / Name / Year")
+            render(view: "search", model: [fileInstance: fileInstance])
             return
         }
 
         def fileList = File.createCriteria().list {
-//            if (subject) eq("subject.id", "${subject.id.toLong()}")
-//            else if (params.subjectId) eq("subject.id", "${params.subjectId?.toLong()}")
 
-            if (code) eq("code", "${code}")
-            else if (params.code) eq("code", "${params.code}")
+            if (fileInstance.name) like("name", "%${fileInstance.name?.trim()}%")
+            if (fileInstance.digitalReference) eq("digitalReference", "${fileInstance.digitalReference?.trim()}")
+            if (fileInstance.year) eq("year", "${fileInstance.year.trim()}")
 
             order('id', 'desc')
         }

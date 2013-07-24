@@ -11,6 +11,7 @@ class File {
     String name
     String code
     String year
+    String digitalReference
 
     static constraints = {
         ministry(blank: false, inList: ["স্থানীয় সরকার বিভাগ, স্থানীয় সরকার, পল্লী উন্নয়ন ও সমবায় মন্ত্রনালয়"])
@@ -21,12 +22,13 @@ class File {
         subject(blank: false)
         name(blank: false, maxSize: 300)
         code(blank: false, size: 3..3, matches: "[০-৯]+")
-        year(blank: false, inList: DigitalDateUtils.YEAR_RANGE)
+        year(blank: false, inList: DigitalDateUtils.YEAR_RANGE, defaultValue: DigitalDateUtils.getCurrentYear())
+        digitalReference(display: false, nullable: true)
     }
 
-//    String getDigitalReference() {
-//        "৪৬.২০৩.০০০০.০০১." + subject?.code + "." + code + "." + year.substring(2)
-//    }
+    def beforeInsert() {
+        digitalReference = "৪৬.২০৩.০০০০.০০১." + subject?.code + "." + code + "." + year.substring(2)
+    }
 
     String toString() {
         DigitalStringUtils.display(name)
