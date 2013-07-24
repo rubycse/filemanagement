@@ -48,53 +48,58 @@
             margin-left:280px;
             margin-right:20px;
         }
+        .moduleBox {
+            border: 1px solid #AAAAAA;
+            width: 150px;
+            height: 200px;
+            float: left;
+            margin: 10px;
+            padding: 5px;
+            font-size: 12px;
+        }
+        .moduleTitle {
+            padding: 5px;
+            border-bottom: 1px solid #D6D6D6;
+            font-weight: bold;
+        }
+        .moduleBox li {
+            list-style: none;
+            padding-left: 10px;
+            padding-top: 5px;
+        }
         </style>
     </head>
     <body>
-        <div id="nav">
-            <div class="homePagePanel">
-                <div class="panelTop"></div>
-                <div class="panelBody">
-                    <h1>Application Status</h1>
-                    <ul>
-                        <li>App version: <g:meta name="app.version"></g:meta></li>
-                        <li>Grails version: <g:meta name="app.grails.version"></g:meta></li>
-                        <li>Groovy version: ${org.codehaus.groovy.runtime.InvokerHelper.getVersion()}</li>
-                        <li>JVM version: ${System.getProperty('java.version')}</li>
-                        <li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-                        <li>Domains: ${grailsApplication.domainClasses.size()}</li>
-                        <li>Services: ${grailsApplication.serviceClasses.size()}</li>
-                        <li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-                    </ul>
-                    <h1>Installed Plugins</h1>
-                    <ul>
-                        <g:set var="pluginManager"
-                               value="${applicationContext.getBean('pluginManager')}"></g:set>
-
-                        <g:each var="plugin" in="${pluginManager.allPlugins}">
-                            <li>${plugin.name} - ${plugin.version}</li>
-                        </g:each>
-
-                    </ul>
-                </div>
-                <div class="panelBtm"></div>
+        <div class="moduleBox">
+            <div class="moduleTitle">
+                Subject
             </div>
+            <ul>
+                <li><g:link controller="subject" action="create">Create</g:link></li>
+                <li><g:link controller="subject" action="list">List</g:link></li>
+            </ul>
         </div>
-        <div id="pageBody">
-            <h1>Welcome to Grails</h1>
-            <p>Congratulations, you have successfully started your first Grails application! At the moment
-            this is the default page, feel free to modify it to either redirect to a controller or display whatever
-            content you may choose. Below is a list of controllers that are currently deployed in this application,
-            click on each to execute its default action:</p>
 
-            <div id="controllerList" class="dialog">
-                <h2>Available Controllers:</h2>
-                <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-                    </g:each>
-                </ul>
+        <div class="moduleBox">
+            <div class="moduleTitle">
+                File
             </div>
+            <ul>
+                <li><g:link controller="file" action="create">Create</g:link></li>
+                <li><g:link controller="file" action="list">List</g:link></li>
+                <li><g:link controller="file" action="search">Search</g:link></li>
+            </ul>
+        </div>
+
+        <div class="moduleBox">
+            <div class="moduleTitle">
+                Letter
+            </div>
+            <ul>
+                <li><g:link controller="letterReference" action="create">Create</g:link></li>
+                <li><g:link controller="letterReference" action="list">List</g:link></li>
+                <li><g:link controller="letterReference" action="search">Search</g:link></li>
+            </ul>
         </div>
     </body>
 </html>

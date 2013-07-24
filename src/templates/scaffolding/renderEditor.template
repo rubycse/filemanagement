@@ -142,7 +142,7 @@
         }
     }
 
-    private renderSelectTypeEditor(type, domainClass,property) {
+    private renderSelectTypeEditor(type, domainClass, property) {
         if (!cp) {
             return "<g:${type}Select name=\"${property.name}\" class=\"field\" value=\"\${${domainInstance}?.${property.name}}\" />"
         }

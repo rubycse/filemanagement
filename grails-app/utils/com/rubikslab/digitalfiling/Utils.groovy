@@ -6,4 +6,31 @@ package com.rubikslab.digitalfiling
  */
 class Utils {
     public static int defaultListSize = 15
+
+    private static def engToBengaliDigit = ['0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫',
+            '6': '৬', '7': '৭', '8': '৮', '9': '৯']
+
+    public static String engToBengaliNumber(String engNumber) {
+        if (!engNumber.matches('[0-9]+')) {
+            throw new NumberFormatException("Invalid English Number: " + engNumber)
+        }
+
+        String bengaliNumber = String.copyValueOf(engNumber.toCharArray())
+
+        engToBengaliDigit.each {
+            bengaliNumber.replace(it.key, it.value)
+        }
+    }
+
+    public static String bengaliToEngNumber(String bengaliNumber) {
+        if (!bengaliNumber.matches('[০-৯]+')) {
+            throw new NumberFormatException("Invalid Bengali Number: " + bengaliNumber)
+        }
+
+        String engNumber = String.copyValueOf(bengaliNumber.toCharArray())
+
+        engToBengaliDigit.each {
+            engNumber.replace(it.value, it.key)
+        }
+    }
 }
