@@ -42,7 +42,7 @@ class BootStrap {
                 "বিবিধ"]
         int code = 1;
         for (def subjectName : subjectNames) {
-            if (code == 5) break
+//            if (code == 5) break
             new Subject(name: subjectName, code: Utils.engToBengaliNumber(String.format('%02d', code++))).save()
         }
     }

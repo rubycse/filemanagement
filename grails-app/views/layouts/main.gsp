@@ -12,7 +12,7 @@
 
 <div class="container" id="container">
 
-    %{--<g:render template="/layouts/topbar"/>--}%
+    <g:render template="/layouts/topbar"/>
 
     <div class="body">
 

@@ -53,7 +53,7 @@
             width: 150px;
             height: 200px;
             float: left;
-            margin: 10px;
+            margin: 10px 20px;
             padding: 5px;
             font-size: 12px;
         }
