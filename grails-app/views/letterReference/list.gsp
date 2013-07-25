@@ -15,6 +15,7 @@
 <content tag="nav">
   <ul>
     <li class="newLink"><g:link action="create"><g:message code="default.link.new.label"/></g:link></li>
+    <li class="searchLink"><g:link action="search"><g:message code="default.link.search.label"/></g:link></li>
     <li class="homeLink"><a href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
   </ul>
 </content>
@@ -27,7 +28,7 @@
     <tr>
 
 
-      <g:tSortableColumn property="idNumber" title="${message(code: 'letterReference.idNumber.label', default: 'Id Number')}"/>
+      <g:tSortableColumn property="digitalReference" title="${message(code: 'letterReference.digitalReference.label', default: 'Digital Reference')}"/>
       
       <th><g:message code="letterReference.file.label" default="File"/></th>
 
@@ -43,7 +44,7 @@
     <g:each in="${letterReferenceInstanceList}" status="i" var="letterReferenceInstance">
       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
         
-        <td><g:link action="show" id="${letterReferenceInstance.id}">${fieldValue(bean: letterReferenceInstance, field: "idNumber")}</g:link></td>
+        <td><g:link action="show" id="${letterReferenceInstance.id}">${fieldValue(bean: letterReferenceInstance, field: "digitalReference")}</g:link></td>
         
         <td>${fieldValue(bean: letterReferenceInstance, field: "file")}</td>
         

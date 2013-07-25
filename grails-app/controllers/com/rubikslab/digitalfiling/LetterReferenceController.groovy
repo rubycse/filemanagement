@@ -84,4 +84,48 @@ class LetterReferenceController {
             }
         }
     }
+
+    def search = {
+        [letterReferenceCmd: new LetterReferenceCmd()]
+    }
+
+    def display = {
+
+        def letterReferenceCmd = new LetterReferenceCmd()
+        bindData letterReferenceCmd, params
+
+        boolean isEmptySearch = DigitalStringUtils.isEmpty(letterReferenceCmd.addresseeName)  &&
+                DigitalStringUtils.isEmpty(letterReferenceCmd.digitalReference) &&
+                letterReferenceCmd.fromDate == null &&
+                letterReferenceCmd.toDate == null
+
+        if (isEmptySearch) {
+            flash.error = "Please Select Digital Reference / Date Range / Assignee Name"
+            render(view: "search", model: [letterReferenceCmd: letterReferenceCmd])
+            return
+        }
+
+        def letterReferenceList = LetterReference.createCriteria().list {
+
+            if (letterReferenceCmd.fromDate && letterReferenceCmd.toDate) {
+                ge("date", letterReferenceCmd.fromDate)
+                le("date", letterReferenceCmd.toDate)
+            }
+            if (letterReferenceCmd.digitalReference) eq("digitalReference", "${letterReferenceCmd.digitalReference?.trim()}")
+            if (letterReferenceCmd.addresseeName) like("addresseeName", "%${letterReferenceCmd.addresseeName?.trim()}")
+            if (letterReferenceCmd.description) like("description", "%${letterReferenceCmd.description?.trim()}")
+
+            order('id', 'desc')
+        }
+
+        render(view: "list", model: [letterReferenceInstanceList: letterReferenceList, letterReferenceInstanceTotal: letterReferenceList.size()])
+    }
+}
+
+class LetterReferenceCmd {
+    String digitalReference
+    Date fromDate
+    Date toDate
+    String addresseeName
+    String description
 }

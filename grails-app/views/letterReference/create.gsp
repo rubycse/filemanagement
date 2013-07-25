@@ -16,6 +16,7 @@
 <content tag="nav">
   <ul>
     <li class="listLink"><g:link action="list"><g:message code="default.link.list.label"/></g:link></li>
+    <li class="searchLink"><g:link action="search"><g:message code="default.link.search.label"/></g:link></li>
     <li class="homeLink"><a href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
   </ul>
 </content>
