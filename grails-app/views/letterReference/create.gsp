@@ -7,6 +7,7 @@
   <meta name="layout" content="main"/>
   <g:set var="entityName" value="${message(code: 'letterReference.label', default: 'LetterReference')}"/>
   <title><g:message code="default.create.label" args="[entityName]"/></title>
+  <resource:dateChooser />
 </head>
 
 <content tag="header">
@@ -35,7 +36,7 @@
       <div class="prop ${hasErrors(bean: letterReferenceInstance, field: 'file', 'error')}">
         <label for="file">
           <g:message code="letterReference.file.label" default="File"/>
-          
+          <span class="asterisk">*</span>
         </label>
         <div class="value">
           <g:select name="file.id" class="field" from="${com.rubikslab.digitalfiling.File.list()}" optionKey="id" value="${letterReferenceInstance?.file?.id}"  />
@@ -46,48 +47,39 @@
       <div class="prop ${hasErrors(bean: letterReferenceInstance, field: 'date', 'error')}">
         <label for="date">
           <g:message code="letterReference.date.label" default="Date"/>
-          
+          <span class="asterisk">*</span>
         </label>
         <div class="value">
-          <g:datePicker name="date" precision="day" value="${letterReferenceInstance?.date}" noSelection="['': '']" />
-
+          <richui:dateChooser name="date" format="${message(code: 'default.date.format')}" value="${letterReferenceInstance.date}" />
         </div>
       </div>
       
       <div class="prop ${hasErrors(bean: letterReferenceInstance, field: 'idNumber', 'error')}">
         <label for="idNumber">
           <g:message code="letterReference.idNumber.label" default="Id Number"/>
-          
           <span class="asterisk">*</span>
-          
         </label>
         <div class="value">
           <g:textField name="idNumber" class="field" maxlength="4" value="${letterReferenceInstance?.idNumber}" />
-
         </div>
       </div>
       
       <div class="prop ${hasErrors(bean: letterReferenceInstance, field: 'addresseeName', 'error')}">
         <label for="addresseeName">
           <g:message code="letterReference.addresseeName.label" default="Addressee Name"/>
-          
           <span class="asterisk">*</span>
-          
         </label>
         <div class="value">
           <g:textField name="addresseeName" class="field" value="${letterReferenceInstance?.addresseeName}" />
-
         </div>
       </div>
       
       <div class="prop ${hasErrors(bean: letterReferenceInstance, field: 'description', 'error')}">
         <label for="description">
           <g:message code="letterReference.description.label" default="Description"/>
-          
         </label>
         <div class="value">
           <g:countableTextArea name="description" id="description" class="field" cols="25" rows="4" isCountable="1" length="500" value="${letterReferenceInstance?.description}" />
-
         </div>
       </div>
       
