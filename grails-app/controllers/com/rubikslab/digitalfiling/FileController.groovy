@@ -44,8 +44,8 @@ class FileController {
             DigitalStringUtils.isEmpty it
         }
 
-        if (isEmptySearch) {
-            fileInstance.errors.reject("Please Select Digital Reference / Name / Year")
+        if (isEmptySearch && !fileInstance.subject) {
+            fileInstance.errors.reject("Please Select Subject / Digital Reference / Name / Year")
             render(view: "search", model: [fileInstance: fileInstance])
             return
         }
@@ -56,9 +56,10 @@ class FileController {
         render(view: "list", model: [fileInstanceList: fileList, fileInstanceTotal: fileList.size(), excelFromSearch: true])
     }
 
-    private List<File> searchFiles(fileInstance) {
+    private List<File> searchFiles(File fileInstance) {
         def fileList = File.createCriteria().list {
 
+            if (fileInstance.subject) eq("subject.id", fileInstance.subject.id)
             if (fileInstance.name) like("name", "%${fileInstance.name?.trim()}%")
             if (fileInstance.digitalReference) eq("digitalReference", "${fileInstance.digitalReference?.trim()}")
             if (fileInstance.year) eq("year", "${fileInstance.year.trim()}")

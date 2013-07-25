@@ -28,7 +28,18 @@
 <div class="content">
     <g:form action="display" method="post">
         <div class="dialog">
-            <div class="prop ${hasErrors(bean: fileInstance, field: 'digitalReference', 'error')}">
+          <div class="prop ${hasErrors(bean: fileInstance, field: 'subject', 'error')}">
+            <label for="subject">
+              <g:message code="file.subject.label" default="Subject"/>
+            </label>
+            <div class="value">
+              <g:select name="subject.id" class="field" from="${com.rubikslab.digitalfiling.Subject.list()}"
+                        optionKey="id" value="${fileInstance?.subject?.id}" noSelection="['': '']"/>
+
+            </div>
+          </div>
+
+          <div class="prop ${hasErrors(bean: fileInstance, field: 'digitalReference', 'error')}">
                 <label for="digitalReference">
                     <g:message code="file.digitalReference.label" default="Digital Reference"/>
                 </label>
