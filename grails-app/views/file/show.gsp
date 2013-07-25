@@ -29,19 +29,6 @@
         <div class="dialog">
 
             <div class="prop">
-                <label for="id">
-                    <g:message code="file.id.label" default="Id"/>
-                </label>
-
-                <div class="value">
-
-                    ${fieldValue(bean: fileInstance, field: "id")}
-
-                </div>
-
-            </div>
-
-            <div class="prop">
                 <label for="ministry">
                     <g:message code="file.ministry.label" default="Ministry"/>
                 </label>

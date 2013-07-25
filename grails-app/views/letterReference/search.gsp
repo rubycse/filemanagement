@@ -7,6 +7,7 @@
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'letterReference.label', default: 'LetterReference')}"/>
     <title><g:message code="default.search.label" args="[entityName]"/></title>
+    <resource:dateChooser />
 </head>
 
 <content tag="header">
@@ -46,7 +47,8 @@
                     <g:message code="letterReference.fromDate.label" default="Date From"/>
                 </label>
                 <div class="value">
-                    <g:datePicker name="fromDate" precision="day" value="${''}" noSelection="['': '']" />
+                    %{--<g:datePicker name="fromDate" precision="day" value="${''}" noSelection="['': '']" />--}%
+                    <richui:dateChooser name="fromDate" format="${message(code: 'default.date.format')}" value="${new Date().plus(-30)}" />
                 </div>
             </div>
 
@@ -55,7 +57,7 @@
                     <g:message code="letterReference.toDate.label" default="Date To"/>
                 </label>
                 <div class="value">
-                    <g:datePicker name="toDate" precision="day" value="${letterReferenceCmd?.toDate}" noSelection="['': '']" />
+                    <richui:dateChooser name="toDate" format="${message(code: 'default.date.format')}" value="${new Date()}" />
                 </div>
             </div>
 
