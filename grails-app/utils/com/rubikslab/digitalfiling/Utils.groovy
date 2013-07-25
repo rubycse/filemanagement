@@ -45,4 +45,18 @@ class Utils {
         boolean msie = userAgent.indexOf("msie") != -1
         return "attachment; filename=" + (msie ? attachmentName : "\"" + attachmentName + "\"")
     }
+
+    public static def getNextCode(String currentCode, int digitCount) {
+        def currentCodeInt = DigitalStringUtils.isEmpty(currentCode) ? 0 : Utils.bengaliToEngNumber(currentCode).toInteger()
+        if (currentCodeInt != calculateMaxValue(digitCount))
+            return Utils.engToBengaliNumber(String.format("%0${digitCount}d", currentCodeInt + 1))
+
+        return ''
+    }
+
+    private static int calculateMaxValue(int digitCount) {
+        def maxValue = ''
+        digitCount.times { maxValue += '9' }
+        maxValue.toInteger()
+    }
 }

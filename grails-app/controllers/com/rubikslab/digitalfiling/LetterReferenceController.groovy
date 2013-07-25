@@ -9,6 +9,15 @@ class LetterReferenceController {
 
     def index() { redirect(action: list) }
 
+    def create = {
+        def letterReferenceInstance = new LetterReference()
+        letterReferenceInstance.properties = params
+        def maxIdNumber = LetterReference.executeQuery( 'select max(l.idNumber) from LetterReference l')
+        letterReferenceInstance.idNumber = Utils.getNextCode(maxIdNumber?.get(0), 4)
+        letterReferenceInstance.date = new Date()
+        return [letterReferenceInstance: letterReferenceInstance]
+    }
+
     def attachFile = {
         def letterReferenceInstance = LetterReference.get(params.id)
         if (!letterReferenceInstance) {

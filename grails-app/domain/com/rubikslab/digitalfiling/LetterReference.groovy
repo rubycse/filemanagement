@@ -18,7 +18,7 @@ class LetterReference {
     static constraints = {
         file(blank: false)
         date(blank: false)
-        idNumber(blank: false, size: 4..4, matches: "[০-৯]+")
+        idNumber(blank: false, unique: 'file', size: 4..4, matches: "[০-৯]+")
         addresseeName(blank: false)
         description(maxSize: 500)
         attachment(nullable: true, maxSize: MAX_FILE_SIZE)

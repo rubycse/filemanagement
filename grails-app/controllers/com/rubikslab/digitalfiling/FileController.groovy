@@ -8,6 +8,14 @@ class FileController {
 
     def index = { redirect(action: "list") }
 
+    def create = {
+        def fileInstance = new File()
+        fileInstance.properties = params
+        def maxCode = File.executeQuery( 'select max(f.code) from File f')
+        fileInstance.code = Utils.getNextCode(maxCode?.get(0), 3)
+        return [fileInstance: fileInstance]
+    }
+
     def exportToExcel = {
         response.contentType = 'application/vnd.ms-excel'
         response.setHeader("Content-disposition", "attachment; filename=files.${params.extension}")

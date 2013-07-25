@@ -21,7 +21,7 @@ class File {
         office(blank: false, inList: ["প্রধান প্রকৌশলীর দপ্তর"])
         subject(blank: false)
         name(blank: false, maxSize: 300)
-        code(blank: false, size: 3..3, matches: "[০-৯]+")
+        code(blank: false, unique: 'subject', size: 3..3, matches: "[০-৯]+")
         year(blank: false, inList: DigitalDateUtils.YEAR_RANGE, defaultValue: DigitalDateUtils.getCurrentYear())
         digitalReference(display: false, nullable: true)
     }
