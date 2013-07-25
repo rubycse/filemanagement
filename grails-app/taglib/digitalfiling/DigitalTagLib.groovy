@@ -2,7 +2,7 @@ package digitalfiling
 
 import org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib
 
-class DigitalTagLibTagLib {
+class DigitalTagLib {
     def pdf = {attrs, body ->
 
         def controller = attrs.controller ?: params.controller

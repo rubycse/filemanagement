@@ -33,7 +33,6 @@ body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
 
-    /*background: #ffffff;*/
     color: #333333;
     margin: 10  auto;
     max-width: 900px;
@@ -413,6 +412,14 @@ input, textarea {
     background: repeat-x #006699;
 }
 
+.smallButton {
+    background: repeat-x #e2e2e2;
+    color: #666666;
+    cursor: pointer;
+    font-weight: normal;
+    padding: 0;
+    border: 1px solid #aaaaaa;
+}
 /********* Table QerReportList ****************/
 /*.qerReportList {*/
     /*background-color: #FFF;*/

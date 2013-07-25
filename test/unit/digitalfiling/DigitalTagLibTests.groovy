@@ -2,7 +2,7 @@ package digitalfiling
 
 import grails.test.*
 
-class DigitalTagLibTagLibTests extends TagLibUnitTestCase {
+class DigitalTagLibTests extends TagLibUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

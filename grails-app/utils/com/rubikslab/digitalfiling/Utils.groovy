@@ -1,5 +1,7 @@
 package com.rubikslab.digitalfiling
 
+import javax.servlet.http.HttpServletRequest
+
 /**
  * @author: lutfun
  * @since: 7/21/13
@@ -36,5 +38,11 @@ class Utils {
         }
 
         engNumber
+    }
+
+    public static getAttachmentFileName(HttpServletRequest request, String attachmentName) {
+        String userAgent = request.getHeader("User-Agent").toLowerCase();
+        boolean msie = userAgent.indexOf("msie") != -1
+        return "attachment; filename=" + (msie ? attachmentName : "\"" + attachmentName + "\"")
     }
 }
