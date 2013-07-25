@@ -273,20 +273,20 @@ class DigitalTagLib {
         out << util.remoteSortableColumn(attrs)
     }
 
-    def datePicker = {attrs, body ->
-        def id = attrs.id
-        String value = (attrs.value ?
-            (attrs.value?.class?.name == 'java.lang.String' ?
-                attrs.value :
-                Utils.formatDate(attrs.value, 'MM/dd/yyyy', "US/Central")) :
-            '')
-        out << "<input type='text' class='date-ui' name=${attrs.name}"
-        out << " value='${value}'"
-        if (id) {
-            out << " id='${id}'"
-        }
-        out << ">"
-    }
+//    def datePicker = {attrs, body ->
+//        def id = attrs.id
+//        String value = (attrs.value ?
+//            (attrs.value?.class?.name == 'java.lang.String' ?
+//                attrs.value :
+//                Utils.formatDate(attrs.value, 'MM/dd/yyyy', "US/Central")) :
+//            '')
+//        out << "<input type='text' class='date-ui' name=${attrs.name}"
+//        out << " value='${value}'"
+//        if (id) {
+//            out << " id='${id}'"
+//        }
+//        out << ">"
+//    }
 
     def tPaginate = { attrs, body ->
         attrs.params = filterNestedParams(params)

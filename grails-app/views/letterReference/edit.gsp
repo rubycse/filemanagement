@@ -51,7 +51,7 @@
           
         </label>
         <div class="value">
-          <g:datePicker name="date" value="${letterReferenceInstance?.date}" noSelection="['': '']" />
+          <g:datePicker name="date" precision="day" value="${letterReferenceInstance?.date}" noSelection="['': '']" />
 
         </div>
       </div>

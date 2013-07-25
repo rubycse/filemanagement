@@ -17,7 +17,7 @@ class LetterReference {
 
     static constraints = {
         file(blank: false)
-        date(nullable: true)
+        date(blank: false)
         idNumber(blank: false, size: 4..4, matches: "[০-৯]+")
         addresseeName(blank: false)
         description(maxSize: 500)

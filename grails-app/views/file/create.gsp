@@ -1,4 +1,4 @@
-<%@ page import="com.rubikslab.digitalfiling.File" %>
+<%@ page import="com.rubikslab.digitalfiling.DigitalDateUtils; com.rubikslab.digitalfiling.File" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -157,7 +157,7 @@
 
                 <div class="value">
                     <g:select name="year" class="field" from="${fileInstance.constraints.year.inList}"
-                              value="${fileInstance?.year}" valueMessagePrefix="file.year"/>
+                              value="${fileInstance?.year ?: DigitalDateUtils.currentYear}" valueMessagePrefix="file.year"/>
 
                 </div>
             </div>
