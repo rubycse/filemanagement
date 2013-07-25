@@ -27,7 +27,8 @@
         <thead>
         <tr>
 
-            <th><g:message code="default.open.label" default="Open"/></th>
+            <g:tSortableColumn property="digitalReference"
+                             title="${message(code: 'file.digitalReference.label', default: 'Digital Reference')}"/>
 
             <th><g:message code="file.subject.label" default="Subject"/></th>
 
@@ -37,8 +38,7 @@
 
             <g:tSortableColumn property="year" title="${message(code: 'file.year.label', default: 'Year')}"/>
 
-            <g:tSortableColumn property="digitalReference"
-                               title="${message(code: 'file.digitalReference.label', default: 'Digital Reference')}"/>
+
 
         </tr>
         </thead>
@@ -46,7 +46,7 @@
         <g:each in="${fileInstanceList}" status="i" var="fileInstance">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
-                <td><g:link action="show" id="${fileInstance.id}">Open</g:link></td>
+                <td><g:link action="show" id="${fileInstance.id}">${fieldValue(bean: fileInstance, field: "digitalReference")}</g:link></td>
 
                 <td>${fieldValue(bean: fileInstance, field: "subject")}</td>
 
@@ -56,8 +56,6 @@
 
                 <td>${fieldValue(bean: fileInstance, field: "year")}</td>
 
-                <td>${fieldValue(bean: fileInstance, field: "digitalReference")}</td>
-
             </tr>
         </g:each>
         </tbody>
@@ -66,7 +64,7 @@
     <div class="paginateButtons">
         <g:tPaginate total="${fileInstanceTotal}"/>
     </div>
-    <export:formats action="exportToExcel" formats="['excel']"/>
+    <export:formats action="exportToExcel" formats="['excel']" params="['excelFromSearch': excelFromSearch]"/>
 </div>
 </body>
 </html>

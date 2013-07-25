@@ -20,15 +20,21 @@ class FileController {
         response.contentType = 'application/vnd.ms-excel'
         response.setHeader("Content-disposition", "attachment; filename=files.${params.extension}")
 
-        exportService.export(params.format, response.outputStream, File.list(params),
+        def fileList = params.excelFromSearch ? searchFiles(session.getAttribute(SessionKeys.FILE_SEARCH_COMMAND)) : File.list(params)
+        exportService.export(params.format, response.outputStream, fileList,
                 ['name', 'code', 'year', 'digitalReference'],
                 ['name': 'Name', 'code': 'Code', 'year': 'Year', 'digitalReference': 'Digital Reference'], [:],
                 ['column.widths': [0.6, 0.075, 0.075, 0.25]])
     }
 
     def search = {
-        def fileInstance = new File()
+        def fileInstance = session.getAttribute(SessionKeys.FILE_SEARCH_COMMAND) ?: new File()
         [fileInstance: fileInstance]
+    }
+
+    def resetSearch = {
+        session.setAttribute(SessionKeys.FILE_SEARCH_COMMAND, null)
+        redirect(action: 'search')
     }
 
     def display = {
@@ -44,6 +50,13 @@ class FileController {
             return
         }
 
+        session.setAttribute(SessionKeys.FILE_SEARCH_COMMAND, fileInstance)
+        List<File> fileList = searchFiles(fileInstance)
+
+        render(view: "list", model: [fileInstanceList: fileList, fileInstanceTotal: fileList.size(), excelFromSearch: true])
+    }
+
+    private List<File> searchFiles(fileInstance) {
         def fileList = File.createCriteria().list {
 
             if (fileInstance.name) like("name", "%${fileInstance.name?.trim()}%")
@@ -52,7 +65,6 @@ class FileController {
 
             order('id', 'desc')
         }
-
-        render(view: "list", model: [fileInstanceList: fileList, fileInstanceTotal: fileList.size()])
+        fileList
     }
 }

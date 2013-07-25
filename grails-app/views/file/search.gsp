@@ -59,7 +59,7 @@
 
                 <div class="value">
                     <g:select name="year" id="year" class="field" from="${fileInstance.constraints.year.inList}"
-                              noSelection="['' : '-- Select --']"
+                              noSelection="['' : ' ']"
                               value="${fileInstance?.year}" valueMessagePrefix="file.year"/>
                 </div>
             </div>
@@ -68,8 +68,8 @@
 
         <div class="buttons">
             <div class="floatRight">
-                <g:submitButton name="search"
-                                value="${message(code: 'default.button.search.label', default: 'Search')}"/>
+              <g:actionSubmit name="resetSearch" action="resetSearch" value="${message(code: 'default.button.reset.label', default: 'Reset')}"/>
+              <g:submitButton name="search" value="${message(code: 'default.button.search.label', default: 'Search')}"/>
             </div>
 
             <div class="clearBoth"></div>
