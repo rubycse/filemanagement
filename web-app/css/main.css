@@ -864,9 +864,9 @@ pre {
     -moz-background-origin: padding;
     background: #FFFFFF url(../images/skin/shadow.jpg) repeat-x scroll center bottom;
     border: 1px solid #CCCCCC;
-    margin-top: 5px;
     padding: 5px 0;
-    width: 100%;
+    width: 15%;
+    margin: auto;
 }
 
 .menuButton a.excel {

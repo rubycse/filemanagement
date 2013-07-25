@@ -4,7 +4,19 @@ class FileController {
 
     static scaffold = true
 
+    def exportService
+
     def index = { redirect(action: "list") }
+
+    def exportToExcel = {
+        response.contentType = 'application/vnd.ms-excel'
+        response.setHeader("Content-disposition", "attachment; filename=files.${params.extension}")
+
+        exportService.export(params.format, response.outputStream, File.list(params),
+                ['name', 'code', 'year', 'digitalReference'],
+                ['name': 'Name', 'code': 'Code', 'year': 'Year', 'digitalReference': 'Digital Reference'], [:],
+                ['column.widths': [0.6, 0.075, 0.075, 0.25]])
+    }
 
     def search = {
         def fileInstance = new File()

@@ -5,6 +5,7 @@
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'file.label', default: 'File')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <r:require module="export"/>
 </head>
 
 <content tag="header">
@@ -65,6 +66,7 @@
     <div class="paginateButtons">
         <g:tPaginate total="${fileInstanceTotal}"/>
     </div>
+    <export:formats action="exportToExcel" formats="['excel']"/>
 </div>
 </body>
 </html>
