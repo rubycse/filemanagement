@@ -22,9 +22,9 @@ class FileController {
 
         def fileList = params.excelFromSearch ? searchFiles(session.getAttribute(SessionKeys.FILE_SEARCH_COMMAND)) : File.list(params)
         exportService.export(params.format, response.outputStream, fileList,
-                ['name', 'code', 'year', 'digitalReference'],
-                ['name': 'Name', 'code': 'Code', 'year': 'Year', 'digitalReference': 'Digital Reference'], [:],
-                ['column.widths': [0.6, 0.075, 0.075, 0.25]])
+                ['digitalReference', 'subject', 'name', 'code', 'year'],
+                ['digitalReference': 'Digital Reference', 'subject': 'Subject', 'name': 'Name', 'code': 'Code', 'year': 'Year'], [:],
+                ['column.widths': [0.25, 0.6, 0.6, 0.075, 0.075]])
     }
 
     def search = {

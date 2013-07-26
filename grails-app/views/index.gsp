@@ -93,7 +93,7 @@
 
         <div class="moduleBox">
             <div class="moduleTitle">
-                Letter
+                <g:message code="letterReference.label"/>
             </div>
             <ul>
                 <li><g:link controller="letterReference" action="create">Create</g:link></li>
